@@ -1,0 +1,13 @@
+@echo off
+title NetPulse Backend API
+cd /d "%~dp0backend"
+echo [NetPulse] Starting FastAPI Backend on http://localhost:8000 ...
+if not exist ".venv\Scripts\python.exe" (
+    echo Creating Python virtual environment...
+    py -m venv .venv
+)
+echo Checking dependencies...
+call .venv\Scripts\pip.exe install -r requirements.txt
+echo Launching Uvicorn server...
+call .venv\Scripts\python.exe -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+pause

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: netpulse-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DATABASE
+        value: netpulse
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: EMBEDDING_MODEL
+        value: text-embedding-004
+      - key: SYNTHESIS_MODEL
+        value: gemini-2.5-flash
+      - key: PYTHON_VERSION
+        value: 3.11.8
